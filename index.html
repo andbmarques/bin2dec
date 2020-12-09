@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Bin2Dec</title>
+</head>
+<body class="bg-secondary">
+    
+    <div class="card bg-white m-3 text-center">
+        <div class="card-body">
+            <h1 class="display-3 text-secondary">Bin2Dec</h1><hr>
+            <form class="form-group" id="form">
+                <div class="form-group">
+                    <input class="form-control text-white bg-light" type="number" maxlength="8" id="binTxt" placeholder="Insira o número binário"/><br>
+                    <input class="form-control " type="text" id="decTxt" readonly placeholder="Veja aqui a conversão binária"><br>
+                    <input class="btn-info btn-block" style="height: 50px;" type="submit" value="Converter" id="conBtn">       
+                </div>
+                </form>
+        </div>
+    </div>
+    
+
+    <script>
+
+        var form = document.getElementById('form');
+        var conBtn = document.getElementById('conBtn');
+        var binTxt = document.getElementById('binTxt');
+        var resLbl = document.getElementById('resLbl');
+        var decTxt = document.getElementById('decTxt')
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            if(binTxt.value == ''){
+                alert('Você deve inserir algum valor binário para que a conversão seja feita!')
+            }
+            else{
+                if(binTxt.value.length >= 9){
+                    alert('Insira no máximo 8 caracteres');
+                }
+                else{
+                    var bin = binTxt.value;
+                    var dec = 0;
+                    
+                    console.log(bin.includes('2'))
+                    if(bin.includes('23456789'.split('') ) == true){
+                        alert('Insira um número binário!');
+                    }
+                    else{
+                        for (let c = 0; c < bin.length; c++) {
+                            dec += Math.pow(2, c) * bin[bin.length - c - 1];
+                        }
+                        decTxt.value = dec;
+                        
+                    }
+                    
+                }
+            }
+            
+        })
+
+    </script>
+</body>
+</html>
